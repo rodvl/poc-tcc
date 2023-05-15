@@ -26,6 +26,7 @@
     "@electron-forge/maker-squirrel": "^6.0.3",
     "@electron-forge/maker-zip": "^6.0.3",
     "@electron-forge/plugin-webpack": "^6.0.3",
+    "@emotion/babel-plugin": "^11.11.0",
     "@vercel/webpack-asset-relocator-loader": "1.7.3",
     "babel-loader": "^9.1.0",
     "css-loader": "^6.0.0",
@@ -34,11 +35,16 @@
     "style-loader": "^3.0.0"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.13.0",
     "electron-squirrel-startup": "^1.0.0",
+    "file-loader": "^6.2.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "svg-url-loader": "^8.0.0"
   },
-  "browser":{
+  "browser": {
     "child_process": false
-  }  
+  }
 }
