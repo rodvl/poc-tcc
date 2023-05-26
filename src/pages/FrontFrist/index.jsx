@@ -5,7 +5,7 @@ import { jsx } from '@emotion/react'
 import { pages } from '../../utils/constants';
 
 
-const BackFrist = ({handleChangePage}) => {
+const FrontFrist = ({handleChangePage}) => {
     return (
         <div css={Wrapper}>
             <Typography variant="subtitle1" gutterBottom><strong>Padrão de projeto</strong></Typography>
@@ -29,4 +29,4 @@ const BackFrist = ({handleChangePage}) => {
     )
 }
 
-export default BackFrist;
+export default FrontFrist;

@@ -1,9 +1,9 @@
 /** @jsx jsx */
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState } from 'react';
 import { Button, TextField, Typography, Switch, RadioGroup, FormControlLabel, Radio, Checkbox } from '@mui/material';
 import {ButtonContainer, Wrapper, FrameworkSection, SectionStyle } from './style';
 import { jsx } from '@emotion/react'
-import { pages, FrontendFrameworks, BackendFrameworks } from '../../utils/constants';
+import { pages, FrontendFrameworks, BackendFrameworks, libNames } from '../../utils/constants';
 import Context from "../../context";
 
 
@@ -18,6 +18,13 @@ const BaseInfoPage = ({handleChangePage}) => {
 
 
     const handleAdvance = () => {
+        const frameworkData = isBackend ? BackendFrameworks.find(e => e.value === selectedFramework) : FrontendFrameworks.find(e => e.value === selectedFramework)
+        const dependencies = frameworkData.coDependency;
+        dependencies.push({name: frameworkData.dependencyName, required: true});
+        if(configEslint) dependencies.push({name: libNames.eslint, required: true});
+        if(configPrettier) dependencies.push({name: libNames.prettier, required: true});
+        if(useTypescript) dependencies.push({name: libNames.typescript, required: true});
+
         setProjectData({
             ...projectData,
             name: projectName,
@@ -25,9 +32,10 @@ const BaseInfoPage = ({handleChangePage}) => {
             framework: selectedFramework,
             configEslint,
             configPrettier,
-            useTypescript
+            useTypescript,
+            dependencies
         })
-        handleChangePage(isBackend ? pages.BACK_FRIST : pages.FRONT_FIRST);
+        handleChangePage(isBackend ? pages.BACK_FRIST : pages.DEPENDENCIES);
     }
 
     const handleSelectFramework = (_, value) => {
