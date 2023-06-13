@@ -14,7 +14,7 @@ const HomePage = ({handleChangePage}) => {
             </div>
             <div css={TextContainer()}>
                 <Typography variant='h3' gutterBottom>Inicializador de projeto</Typography>
-                <Typography variant='body1'>Descrição</Typography>
+                <Typography variant='body1'>Versão beta</Typography>
             </div>
             <div css={ButtonContainer()}>
                 <Button variant='outlined' onClick={() => handleChangePage(pages.ABOUT)}>Sobre o projeto</Button>

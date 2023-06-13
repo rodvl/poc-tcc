@@ -2,16 +2,28 @@ import React, { useState, useEffect } from "react";
 
 const SettingsContext = React.createContext();
 
+export const initialState = {
+  name: "projeto222",
+  path: "/Users/rodrigo.lapertosa/Documents/testetcc",
+  isBackend: true,
+  framework: "",
+  configEslint: false,
+  configPrettier: false,
+  useTypescript: false,
+  configRedux: false,
+  styleLib: null,
+  componentLib: null,
+  httpLib: null,
+  pattern: null,
+  iconLib: null,
+  database: null,
+  dbPLugin: null,
+  configJest: false,
+  dependencies: [],
+}
+
 export const SettingsProvider = ({ children }) => {
-  const [currentSettings, setCurrentSettings] = useState({
-    name: "",
-    isBackend: false,
-    framework: "",
-    configEslint: false,
-    configPrettier: false,
-    useTypescript: false,
-    dependencies: []
-  });
+  const [currentSettings, setCurrentSettings] = useState(initialState);
 
   useEffect(() => {
     console.log(currentSettings);

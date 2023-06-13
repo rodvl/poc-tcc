@@ -12,7 +12,7 @@ import { pages } from '../utils/constants';
 import { SettingsProvider } from '../context/index.js';
 
 const MainPage = () => {
-    const [currentPage, setCurrentPage] = useState(pages.ERROR);
+    const [currentPage, setCurrentPage] = useState(pages.HOME);
     const handleChangePage = (page) => {
         setCurrentPage(page);
     }

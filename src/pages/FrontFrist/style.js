@@ -4,7 +4,8 @@ export const ButtonContainer = () => css`
     display: flex;
     justify-content: center;
     width: 100%;
-    margin-top: 32px;
+    margin-top: 16px;
+    gap: 24px;
     > button {
         width: 250px
     }

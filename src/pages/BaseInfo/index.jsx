@@ -1,15 +1,16 @@
 /** @jsx jsx */
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { Button, TextField, Typography, Switch, RadioGroup, FormControlLabel, Radio, Checkbox } from '@mui/material';
 import {ButtonContainer, Wrapper, FrameworkSection, SectionStyle } from './style';
 import { jsx } from '@emotion/react'
 import { pages, FrontendFrameworks, BackendFrameworks, libNames } from '../../utils/constants';
-import Context from "../../context";
-
+import Context, {initialState} from "../../context";
+import { nanoid } from 'nanoid';
 
 const BaseInfoPage = ({handleChangePage}) => {
     const [projectData, setProjectData] = useContext(Context);
     const [projectName, setProjectName] = useState(projectData.name);
+    const [projectPath, setProjectPath] = useState(projectData.path);
     const [isBackend, setIsBackend] = useState(projectData.isBackend);
     const [selectedFramework, setSelectedFramework] = useState(projectData.framework);
     const [configEslint, setConfigEslint] = useState(projectData.configEslint);
@@ -19,15 +20,16 @@ const BaseInfoPage = ({handleChangePage}) => {
 
     const handleAdvance = () => {
         const frameworkData = isBackend ? BackendFrameworks.find(e => e.value === selectedFramework) : FrontendFrameworks.find(e => e.value === selectedFramework)
-        const dependencies = frameworkData.coDependency;
+        const dependencies = [...frameworkData.coDependency];
         dependencies.push({name: frameworkData.dependencyName, required: true});
         if(configEslint) dependencies.push({name: libNames.eslint, required: true});
         if(configPrettier) dependencies.push({name: libNames.prettier, required: true});
         if(useTypescript) dependencies.push({name: libNames.typescript, required: true});
-
+        const initData = projectData.isBackend !== isBackend ? initialState : projectData;
         setProjectData({
-            ...projectData,
+            ...initData,
             name: projectName,
+            path: projectPath,
             isBackend,
             framework: selectedFramework,
             configEslint,
@@ -35,7 +37,7 @@ const BaseInfoPage = ({handleChangePage}) => {
             useTypescript,
             dependencies
         })
-        handleChangePage(isBackend ? pages.BACK_FRIST : pages.DEPENDENCIES);
+        handleChangePage(isBackend ? pages.BACK_FRIST : pages.FRONT_FIRST);
     }
 
     const handleSelectFramework = (_, value) => {
@@ -49,15 +51,17 @@ const BaseInfoPage = ({handleChangePage}) => {
     const FrameworkRadio = (Frameworks) => {
         return (
             <RadioGroup
-                aria-labelledby="demo-controlled-radio-buttons-group"
-                name="controlled-radio-buttons-group"
                 value={selectedFramework}
                 onChange={handleSelectFramework}
             >
-                {Frameworks.map(e =>  <FormControlLabel value={e.value} control={<Radio />} label={e.label} />)}
+                {Frameworks.map(e =>  <FormControlLabel value={e.value} control={<Radio />} label={e.label} key={nanoid()} />)}
             </RadioGroup>
         )
     }
+
+    useEffect(() => {
+        
+    }, [])
 
     return (
         <div css={Wrapper}>
@@ -77,6 +81,22 @@ const BaseInfoPage = ({handleChangePage}) => {
                         label="Nome do projeto"
                         fullWidth
                     />
+                </div>
+                <div css={SectionStyle}>
+                    <TextField 
+                        id='path' 
+                        value={projectPath}
+                        onChange={(e) => {
+                            setProjectPath(e.target.value);
+                        }}
+                        required
+                        label="Caminho do projeto"
+                        placeholder='Deve seguir o padrão do seu OS'
+                        fullWidth
+                    />
+                </div>
+                <div css={SectionStyle}>
+                    
                 </div>
                 <div css={SectionStyle}>
                     <Typography variant="subtitle1"><strong>Qual a finalidade?</strong></Typography>
@@ -100,10 +120,10 @@ const BaseInfoPage = ({handleChangePage}) => {
                         control={<Checkbox checked={configPrettier} onChange={() => setConfigPrettier(!configPrettier)} />}
                         label="Configurar Prettier"
                     />
-                    <FormControlLabel
+                    {/* <FormControlLabel
                         control={<Checkbox checked={useTypescript} onChange={() => setUseTypescript(!useTypescript)} />}
                         label="Utilizar Typescript"
-                    />  
+                    />   */}
                 </div>
             </div>
             <div css={ButtonContainer}>
