@@ -1,4 +1,4 @@
-import {prettierContent, typescriptContent, eslintContent, reduxContent, jestContent, knexContent, sequelizeContent} from './files';
+import {prettierContent, typescriptContent, eslintContent, reduxContent, jestContent, knexContent, sequelizeContent, expressServer, babelContent} from './files';
 export const createFolder = (path, projectName) => `
     cd ${path} &&
     mkdir ${projectName} &&
@@ -36,6 +36,10 @@ export const configJest = () => `&& echo "${jestContent}" > jest.config.js`;
 export const configKnex = (client) => `&& echo "${knexContent(client)}" > knexfile.js`;
 
 export const configSequelize = () => `&& echo "${sequelizeContent}" > sequelize.js`;
+
+export const inicializeExpress = () => `&& echo "${expressServer}" > src/server.js`;
+
+export const configBabel = () => `&& npm i @babel/cli @babel/core @babel/node @babel/preset-env @babel/plugin-proposal-class-properties @babel/plugin-proposal-object-rest-spread --save-dev && echo "${babelContent}" > .babelrc`
 
 
 

@@ -109,3 +109,34 @@ const sequelize = new Sequelize('database', 'username', 'password', {
   dialect: /* one of 'mysql' | 'postgres' | 'sqlite' | 'mariadb' | 'mssql' | 'db2' | 'snowflake' | 'oracle' */
 });
 `;
+
+export const expressServer =
+`import express from 'express';
+
+const app = express();
+
+app.use(express.json());
+
+app.get('/test', (request, response) => {
+  return response.json({success: true});
+});
+
+console.log('ready on portt 3333');
+app.listen(3333);
+`;
+
+export const babelContent = 
+`{
+  \\"presets\\": [
+    [\\"@babel/env\\", {
+      \\"targets\\": {
+        \\"node\\": \\"current\\"
+      }
+    }]
+  ],
+  \\"plugins\\": [
+    \\"@babel/plugin-proposal-class-properties\\",
+    \\"@babel/plugin-proposal-object-rest-spread\\"
+  ]
+}
+`;

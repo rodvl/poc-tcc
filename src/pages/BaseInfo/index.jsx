@@ -25,6 +25,7 @@ const BaseInfoPage = ({handleChangePage}) => {
         if(configEslint) dependencies.push({name: libNames.eslint, required: true});
         if(configPrettier) dependencies.push({name: libNames.prettier, required: true});
         if(useTypescript) dependencies.push({name: libNames.typescript, required: true});
+        if(isBackend) dependencies.push({name: 'nodemon', required: true});
         const initData = projectData.isBackend !== isBackend ? initialState : projectData;
         setProjectData({
             ...initData,
