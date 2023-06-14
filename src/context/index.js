@@ -25,10 +25,6 @@ export const initialState = {
 export const SettingsProvider = ({ children }) => {
   const [currentSettings, setCurrentSettings] = useState(initialState);
 
-  useEffect(() => {
-    console.log(currentSettings);
-  }, [currentSettings])
-
   const saveSettings = (values) => {
    setCurrentSettings(values)
   };

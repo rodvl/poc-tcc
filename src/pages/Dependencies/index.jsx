@@ -26,7 +26,6 @@ const Dependencies = ({handleChangePage}) => {
         if (result && result.data){
             const packages = result.data.objects.slice(0,10).map(e => e.package)
             setSearchResult(packages);
-            console.log(packages);
         }
         setLoading(false);
     }

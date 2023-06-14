@@ -1,9 +1,6 @@
 import {prettierContent, typescriptContent, eslintContent, reduxContent, jestContent, knexContent, sequelizeContent, expressServer, babelContent, indexHtml, reactApp, reactIndex} from './files';
-export const createFolder = (path, projectName) => `
-    cd ${path} &&
-    mkdir ${projectName} &&
-    cd ${projectName}
-    mkdir src`
+
+export const createFolder = (path, projectName) => `cd ${path} && mkdir ${projectName} && cd ${projectName} && mkdir src`
 
 export const npmInit = () => `npm init -y`
 
@@ -12,16 +9,9 @@ export const installDependencies = (dependencies) => {
     return `npm install ${deps} --loglevel=error`;
 }
 
-export const atomicPattern = () => `&& mkdir src/pages &&
-    mkdir src/components &&
-    mkdir src/components/atoms &&
-    mkdir src/components/molecules &&
-    mkdir src/components/organisms &&
-    mkdir src/components/quarks`;
+export const atomicPattern = () => `&& mkdir src/pages && mkdir src/components && mkdir src/components/atoms && mkdir src/components/molecules && mkdir src/components/organisms && mkdir src/components/quarks`;
 
-export const csrPattern = () => `&& mkdir src/controller &&
-    mkdir src/service &&
-    mkdir src/repository`;
+export const csrPattern = () => `&& mkdir src/controller && mkdir src/service && mkdir src/repository`;
 
 export const createPrettierFile = () => `&& echo "${prettierContent}" > prettier.config.js`;
 
