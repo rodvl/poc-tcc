@@ -7,7 +7,7 @@ import loading from '../../assets/loading.gif';
 import Context from "../../context";
 import { pages } from '../../utils/constants';
 import {executeCommand} from '../../utils/runner';
-import {createFolder, npmInit, installDependencies, atomicPattern, csrPattern, createPrettierFile, createTypescriptFile, configRedux, configJest, configKnex, configSequelize, inicializeExpress, configBabel} from '../../scripts/commum';
+import {createFolder, npmInit, installDependencies, atomicPattern, csrPattern, createPrettierFile, createTypescriptFile, configRedux, configJest, configKnex, configSequelize, inicializeExpress, configBabel, inicializeReact} from '../../scripts/commum';
 
 
 const Building = ({handleChangePage}) => {
@@ -37,7 +37,9 @@ const Building = ({handleChangePage}) => {
             const sequelize = projectData.database && projectData.database.value === "sequelize" ? configSequelize() : '';
             const express = projectData.isBackend && projectData.framework === 'express' ? inicializeExpress() : '';
             const babel = projectData.isBackend ? configBabel() : ''
-            const commands = `${createFolder(projectData.path, projectData.name)} && ${npmInit()} && ${installDependencies(projectData.dependencies)} ${patternScript} ${prettier} ${typescript} ${redux} ${jest} ${knex} ${sequelize} ${express} ${babel}`
+            const react = !projectData.isBackend && projectData.framework === 'react' ? inicializeReact() : '';
+
+            const commands = `${createFolder(projectData.path, projectData.name)} && ${npmInit()} && ${installDependencies(projectData.dependencies)} ${patternScript} ${prettier} ${typescript} ${redux} ${jest} ${knex} ${sequelize} ${express} ${babel} ${react}`
             executeCommand(commands, handleSuccess, handleError);
         }
     }, [])

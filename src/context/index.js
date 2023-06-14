@@ -3,9 +3,9 @@ import React, { useState, useEffect } from "react";
 const SettingsContext = React.createContext();
 
 export const initialState = {
-  name: "projeto222",
-  path: "/Users/rodrigo.lapertosa/Documents/testetcc",
-  isBackend: true,
+  name: "",
+  path: "",
+  isBackend: false,
   framework: "",
   configEslint: false,
   configPrettier: false,

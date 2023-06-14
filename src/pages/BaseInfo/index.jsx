@@ -113,10 +113,10 @@ const BaseInfoPage = ({handleChangePage}) => {
                 </div>
                 <div css={SectionStyle}>
                     <Typography variant="subtitle1"><strong>Configurações adicionais</strong></Typography>
-                    <FormControlLabel
+                    {/* <FormControlLabel
                         control={<Checkbox checked={configEslint} onChange={() => setConfigEslint(!configEslint)} />}
                         label="Configurar Eslint"
-                    />
+                    /> */}
                     <FormControlLabel
                         control={<Checkbox checked={configPrettier} onChange={() => setConfigPrettier(!configPrettier)} />}
                         label="Configurar Prettier"

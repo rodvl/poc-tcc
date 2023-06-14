@@ -14,7 +14,7 @@ const Finished = () => {
         <div css={Wrapper}>
             <div>
                 <Typography variant='h4' gutterBottom>Projeto Criado!</Typography>
-                <Typography variant='subtitle2' gutterBottom>Para executar o projeto execute: {projectData.isBackend ? "npx nodemon --exec babel-node src/server.js" : ""}</Typography>
+                <Typography variant='subtitle2' gutterBottom>Para executar o projeto execute: {projectData.isBackend ? "npx nodemon --exec babel-node src/server.js" : "npx react-scripts start"}</Typography>
                 <Typography variant='body2' gutterBottom>
                     Obrigado por utilizar a ferramenta!
                 </Typography>

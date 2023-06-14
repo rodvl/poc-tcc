@@ -140,3 +140,49 @@ export const babelContent =
   ]
 }
 `;
+
+export const indexHtml = 
+`<!DOCTYPE html>
+<html lang=\\"en\\">
+  <head>
+    <meta charset=\\"utf-8\\" />
+    <meta name=\\"viewport\\" content=\\"width=device-width, initial-scale=1\\" />
+    <meta
+      name=\\"description\\"
+      content=\\"Edit to add your description\\"
+    />
+    <title>Browser tab title</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id=\\"root\\"></div>
+  </body>
+</html>
+`;
+
+export const reactApp =
+`const App = () => {
+  return (
+    <div>
+      <p>
+        Start building your code
+      </p>
+    </div>
+  );
+}
+
+export default App;
+`;
+
+export const reactIndex = 
+`import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+`;

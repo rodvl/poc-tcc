@@ -15,7 +15,15 @@ export const FrontendFrameworks = [
         label: 'React Versão 18',
         value: 'react',
         dependencyName: 'react@18',
-        coDependency: []
+        coDependency: [
+            {
+                required: true,
+                name: 'react-dom@18'
+            },
+            {
+                required: true,
+                name: 'react-scripts'
+            }]
     }
 ];
 export const BackendFrameworks = [
