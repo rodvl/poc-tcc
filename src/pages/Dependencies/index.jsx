@@ -12,7 +12,7 @@ import { nanoid } from 'nanoid';
 import Context from "../../context";
 
 const Dependencies = ({handleChangePage}) => {
-    const [projectData] = useContext(Context);
+    const [projectData, setProjectData] = useContext(Context);
     const [searchParam, setSearchParam] = useState('');
     const [searchResult, setSearchResult] = useState([]);
     const [selectedLibs, setSelectedLibs] = useState(projectData.dependencies);
@@ -38,11 +38,13 @@ const Dependencies = ({handleChangePage}) => {
             setSelectedLibs(newSelected);
             const newSearchResult = [...searchResult].filter(e => e.name !== pack.name);
             setSearchResult(newSearchResult);
+            setProjectData({...projectData, dependencies: newSelected});
         }
     }
     const handleRemove = (pack) => {
         const newSelected = [...selectedLibs].filter(e => e.name !== pack.name);
         setSelectedLibs(newSelected);
+        setProjectData({...projectData, dependencies: newSelected});
         const libAlreadyOnList = searchResult.find(e => e.name === pack.name);
         if(!libAlreadyOnList){
             const newSearchResult = [...searchResult];
